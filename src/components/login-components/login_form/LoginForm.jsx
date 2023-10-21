@@ -1,14 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './loginform.css';
 import { useNavigate } from 'react-router-dom';
-//const mysql = require("mysql2");
+
+// const mysql = require('mysql2');
 export const LoginForm = () => {
+  const [visible, setVisible] = useState(false);
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     navigate('/student-panel');
   };
+
+  const handleShowPassword = () => {
+    setVisible(!visible);
+  };
+
+  
 
   return (
     <div className='login__form-container'>
@@ -33,11 +41,18 @@ export const LoginForm = () => {
               Hasło
             </label>
             <input
-              type='password'
+              type={visible ? 'text' : 'password'}
               name='password'
               className='form__input form__input-password'
               onChange={(e) => setPassword(e.target.value)}
             />
+            <div className='form__password-icon' onClick={handleShowPassword}>
+              {visible ? (
+                <i class='fa-regular fa-eye'></i>
+              ) : (
+                <i class='fa-regular fa-eye-slash'></i>
+              )}
+            </div>
           </div>
         </div>
         <div className='form__submit-container'>

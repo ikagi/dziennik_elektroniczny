@@ -69,3 +69,17 @@
   color: #000;
   transition: 0.2s all;
 }
+
+.form__password-icon {
+  position: absolute;
+  color: var(--background-color-dark);
+  right: 60px;
+  bottom: 140px;
+  font-size: 1.2rem;
+  line-height: 35px;
+  transition: 0.1s all;
+}
+
+.form__password-icon:active {
+  scale: 0.8;
+}
