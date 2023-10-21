@@ -1,0 +1,77 @@
+.timetable-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 150px;
+}
+
+.timetable {
+  display: grid;
+  grid-template-columns: 100px repeat(6, 1fr);
+  grid-template-rows: repeat(8, 50px);
+  gap: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  background-color: var(--container-color-dark);
+  padding: 20px;
+  height: max-content;
+}
+
+.timetable__lesson-time-container,
+.timetable__lesson-numbers {
+  grid-row: span 9;
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+}
+
+.timetable__lesson-time,
+.timetable__lesson-number {
+  font-weight: bold;
+  font-size: 14px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid #ccc;
+}
+
+.timetable__lesson {
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+  min-height: 50px;
+}
+
+.timetable__day {
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.timetable__day-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+}
+
+.label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  margin: 20px 0;
+  border-right: 1px solid #ccc;
+}
+
+.timetable__lesson:last-child {
+  border-bottom: 0;
+}
+
+.timetable__title {
+  margin-bottom: 24px;
+}
