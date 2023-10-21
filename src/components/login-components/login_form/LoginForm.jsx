@@ -1,7 +1,7 @@
 import React from 'react';
 import './loginform.css';
 import { useNavigate } from 'react-router-dom';
-
+//const mysql = require("mysql2");
 export const LoginForm = () => {
   const navigate = useNavigate();
   const handleSubmit = (e) => {
