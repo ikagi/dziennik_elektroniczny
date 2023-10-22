@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import './loginform.css';
 import { useNavigate } from 'react-router-dom';
 
-// const mysql = require('mysql2');
 export const LoginForm = () => {
   const [visible, setVisible] = useState(false);
+  const [login, setLogin] = useState('');
+  const [password, setPassword] = useState('');
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    console.log("Login: " + login);
+    console.log("Haslo: " + password);
     navigate('/student-panel');
   };
 
@@ -16,7 +18,6 @@ export const LoginForm = () => {
     setVisible(!visible);
   };
 
-  
 
   return (
     <div className='login__form-container'>
