@@ -1,23 +1,42 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './loginform.css';
 import { useNavigate } from 'react-router-dom';
+import LoginValidation from '../../../scipts/LoginValidation';
 
 export const LoginForm = () => {
-  const [visible, setVisible] = useState(false);
-  const [login, setLogin] = useState('');
-  const [password, setPassword] = useState('');
+  const [visible, setVisible] = useState(false); //Used to show/hide password feature
+
+  const [userInput, setUserInput] = useState({ //stores userinput from form
+    login: '',
+    password: ''
+  });
+
+  const [errors, setErrors] = useState(''); // Used to showing errors on page
+
   const navigate = useNavigate();
+
+  const handleInput = (e) => {
+    setUserInput(prev => ({...prev, [event.target.name]: [event.target.value]}))
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Login: " + login);
-    console.log("Haslo: " + password);
-    navigate('/student-panel');
+    setErrors(LoginValidation(userInput));  
+    //navigate('/student-panel');
   };
+  
+  useEffect( () => {
+    console.error(errors.password);
+    console.error(errors.login);
+    console.log("Login: " + userInput.login);
+    console.log("Haslo: " + userInput.password);
+  }, [errors]);
+
+
 
   const handleShowPassword = () => {
     setVisible(!visible);
   };
-
 
   return (
     <div className='login__form-container'>
@@ -34,7 +53,7 @@ export const LoginForm = () => {
               type='text'
               name='login'
               className='form__input form__input--login'
-              onChange={(e) => setLogin(e.target.value)}
+              onChange={(e) => handleInput()}
             />
           </div>
           <div className='form__input-container'>
@@ -45,13 +64,13 @@ export const LoginForm = () => {
               type={visible ? 'text' : 'password'}
               name='password'
               className='form__input form__input-password'
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => handleInput()}
             />
             <div className='form__password-icon' onClick={handleShowPassword}>
               {visible ? (
-                <i class='fa-regular fa-eye'></i>
+                <i className='fa-regular fa-eye'></i>
               ) : (
-                <i class='fa-regular fa-eye-slash'></i>
+                <i className='fa-regular fa-eye-slash'></i>
               )}
             </div>
           </div>

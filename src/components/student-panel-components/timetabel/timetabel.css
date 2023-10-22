@@ -75,3 +75,49 @@
 .timetable__title {
   margin-bottom: 24px;
 }
+
+@media only screen and (max-width: 1200px) {
+  .timetable {
+    grid-template-columns: 80px repeat(6, 1fr);
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .timetable {
+    grid-template-columns: 60px repeat(6, 1fr);
+    gap: 5px;
+    padding: 10px;
+  }
+  .timetable__lesson-time,
+  .timetable__lesson-number {
+    font-size: 12px;
+    height: 40px;
+  }
+  .label {
+    height: 40px;
+  }
+  .timetable__day {
+    height: 40px;
+    margin: 10px 0;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .timetable {
+    grid-template-columns: repeat(6, 1fr);
+    gap: 5px;
+    padding: 10px;
+  }
+  .timetable__lesson-time,
+  .timetable__lesson-number {
+    font-size: 10px;
+    height: 30px;
+  }
+  .label {
+    height: 30px;
+  }
+  .timetable__day {
+    height: 30px;
+    margin: 5px 0;
+  }
+}

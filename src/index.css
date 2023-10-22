@@ -42,3 +42,7 @@ a {
 a:visited {
   color: var(--title-color-light);
 }
+
+.main {
+  margin-top: 150px;
+}

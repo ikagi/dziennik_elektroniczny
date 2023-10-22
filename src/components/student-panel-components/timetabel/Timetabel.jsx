@@ -9,7 +9,7 @@ export const Timetabel = () => {
       <h1 className='timetable__title'>Plan Lekcji</h1>
       <div className='timetable'>
         <div className='timetable__lesson-numbers'>
-          <div className='label'>Nr lekcji</div>
+          <div className='label lesson-number-label'>Nr lekcji</div>
           {lessonNumbers.map((number) => (
             <div key={number} className='timetable__lesson-number'>
               {number}
@@ -17,7 +17,7 @@ export const Timetabel = () => {
           ))}
         </div>
         <div className='timetable__lesson-time-container'>
-          <div className='label'>Godziny</div>
+          <div className='label lesson-time-label'>Godziny</div>
           <div className='timetable__lesson-time'>7:15 - 8:00</div>
           <div className='timetable__lesson-time'>8:10 - 8:55</div>
           <div className='timetable__lesson-time'>9:05 - 9:50</div>
