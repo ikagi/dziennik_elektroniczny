@@ -7,12 +7,13 @@
 .form__input-container {
   display: flex;
   gap: 10%;
+  position: relative;
 }
 
 .form__inputs {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 30px;
 }
 
 .form__inputs .form__input {
@@ -73,8 +74,8 @@
 .form__password-icon {
   position: absolute;
   color: var(--background-color-dark);
-  right: 60px;
-  bottom: 140px;
+  right: 10px;
+  bottom: 0;
   font-size: 1.2rem;
   line-height: 35px;
   transition: 0.1s all;
@@ -82,4 +83,19 @@
 
 .form__password-icon:active {
   scale: 0.8;
+}
+
+.error-message {
+  position: absolute;
+  color: #ff0033;
+  top: 40px;
+  right: 0;
+  font-weight: 500;
+}
+
+
+@media only screen and (max-width: 768px) {
+  .error-message {
+    font-size: 0.8rem;
+  }
 }

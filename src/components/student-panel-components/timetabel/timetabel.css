@@ -91,33 +91,89 @@
   .timetable__lesson-time,
   .timetable__lesson-number {
     font-size: 12px;
-    height: 40px;
+    height: 50px;
   }
   .label {
-    height: 40px;
+    height: 50px;
   }
   .timetable__day {
-    height: 40px;
-    margin: 10px 0;
+    height: 50px;
+    margin: 20px 0;
   }
 }
 
 @media only screen and (max-width: 768px) {
   .timetable {
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: 80px repeat(5, 1fr);
     gap: 5px;
     padding: 10px;
   }
-  .timetable__lesson-time,
-  .timetable__lesson-number {
+  .timetable__lesson-time {
     font-size: 10px;
     height: 30px;
+    margin: 10px 0;
+    width: 70px;
+    border-right: none;
   }
+
+  .lesson-time-label {
+    width: 70px;
+    border-right: none;
+  }
+
+  .timetable__lesson-numbers {
+    display: none;
+  }
+
   .label {
     height: 30px;
   }
   .timetable__day {
     height: 30px;
+    margin: 20px 0;
+  }
+  .timetable__lesson {
+    height: 30px;
+    font-size: 12px;
+  }
+
+  .timetable__lesson-time-container {
+    border-right: 1px solid #ccc;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .timetable {
+    grid-template-columns: 70px repeat(5, 50px);
+    gap: 5px;
+    padding: 10px;
+    margin: 0 15px;
+  }
+  .timetable__lesson-time {
+    font-size: 8px;
+    height: 30px;
+  }
+  .label {
+    height: 25px;
+  }
+  .timetable__day {
+    height: 25px;
+    margin: 5px 0;
+    font-size: 8px;
+    font-weight: 500;
+    width: 50px;
+  }
+
+  .timetable__lesson {
+    text-align: left;
+    font-size: 10px;
+    max-height: 25px;
+    font-size: 8px;
+    padding: 20px 0 0 0;
+  }
+
+  .lesson-time-label {
+    font-size: 10px;
     margin: 5px 0;
   }
 }

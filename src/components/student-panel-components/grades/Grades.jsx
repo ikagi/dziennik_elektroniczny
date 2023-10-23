@@ -13,7 +13,7 @@ export const Grades = () => {
         <button onClick={() => setButtonPopup(true)}>Popup</button>
         <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
           <h2>jakies oceny</h2>
-          <p>testaa</p>
+          <p>Gebać Jofra</p>
         </Popup>
       </main>
     </>

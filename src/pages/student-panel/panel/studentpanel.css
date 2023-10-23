@@ -2,7 +2,7 @@
   background-color: var(--container-color-dark);
   position: fixed;
   top: 0;
-  width: 100%;
+  width: 100vw;
   height: 100px;
   display: flex;
   justify-content: center;
@@ -11,15 +11,4 @@
 
 .student-panel__list .link {
   font-size: 1.4rem;
-  transition: 0.3s all;
-}
-
-.student-panel__list .link:hover {
-  transform: scale(0.95);
-}
-
-@media only screen and (max-width: 576px) {
-  .student-panel__list .link {
-    font-size: 1.1rem;
-  }
 }

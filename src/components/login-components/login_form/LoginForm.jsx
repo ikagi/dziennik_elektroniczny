@@ -1,42 +1,58 @@
 import React, { useEffect, useState } from 'react';
 import './loginform.css';
 import { useNavigate } from 'react-router-dom';
-import LoginValidation from '../../../scipts/LoginValidation';
+import LoginValidation from '../../../scripts/LoginValidation';
 
 export const LoginForm = () => {
-  const [visible, setVisible] = useState(false); //Used to show/hide password feature
-
-  const [userInput, setUserInput] = useState({ //stores userinput from form
+  const [visible, setVisible] = useState(false);
+  const [login, setLogin] = useState('');
+  const [password, setPassword] = useState('');
+  const [errors, setErrors] = useState({
     login: '',
-    password: ''
+    password: '',
   });
-
-  const [errors, setErrors] = useState(''); // Used to showing errors on page
-
+  const [redBorderLogin, setRedBorderLogin] = useState(false);
+  const [redBorderPassword, setRedBorderPassword] = useState(false);
   const navigate = useNavigate();
-
-  const handleInput = (e) => {
-    setUserInput(prev => ({...prev, [event.target.name]: [event.target.value]}))
-  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setErrors(LoginValidation(userInput));  
-    //navigate('/student-panel');
+
+    const validationErrors = LoginValidation({ login, password });
+
+    if (!validationErrors.login && !validationErrors.password) {
+      fetch('http://127.0.0.1:8081/users')
+        .then((response) => console.log(response))
+        .then((data) => console.log(data))
+        .catch((error) => console.error(error));
+      console.log('Login: ' + login);
+      console.log('Haslo: ' + password);
+      //navigate('/student-panel');
+    } else {
+      setErrors(validationErrors);
+    }
   };
-  
-  useEffect( () => {
-    console.error(errors.password);
-    console.error(errors.login);
-    console.log("Login: " + userInput.login);
-    console.log("Haslo: " + userInput.password);
-  }, [errors]);
 
+  const handleErrorInputBorder = () => {
+    setRedBorderLogin(!!errors.login);
+    setRedBorderPassword(!!errors.password);
+  };
 
+  const handleLoginChange = (e) => {
+    setLogin(e.target.value);
+    setRedBorderLogin(false);
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+    setRedBorderPassword(false);
+  };
 
   const handleShowPassword = () => {
     setVisible(!visible);
   };
+
+  useEffect(handleErrorInputBorder, [errors.login, errors.password]);
 
   return (
     <div className='login__form-container'>
@@ -53,8 +69,10 @@ export const LoginForm = () => {
               type='text'
               name='login'
               className='form__input form__input--login'
-              onChange={(e) => handleInput()}
+              onChange={handleLoginChange}
+              style={redBorderLogin ? { border: '1px solid #ff0033' } : null}
             />
+            <div className='form__login-error error-message'>{errors.login}</div>
           </div>
           <div className='form__input-container'>
             <label htmlFor='password' className='form__input-label'>
@@ -64,7 +82,8 @@ export const LoginForm = () => {
               type={visible ? 'text' : 'password'}
               name='password'
               className='form__input form__input-password'
-              onChange={(e) => handleInput()}
+              onChange={handlePasswordChange}
+              style={redBorderPassword ? { border: '1px solid #ff0033' } : null}
             />
             <div className='form__password-icon' onClick={handleShowPassword}>
               {visible ? (
@@ -73,6 +92,7 @@ export const LoginForm = () => {
                 <i className='fa-regular fa-eye-slash'></i>
               )}
             </div>
+            <div className='form__password-error error-message'>{errors.password}</div>
           </div>
         </div>
         <div className='form__submit-container'>
