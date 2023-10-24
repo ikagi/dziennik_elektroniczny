@@ -1,0 +1,55 @@
+.page-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+
+.main {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  margin-top: 100px;
+}
+.lessons-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.lesson__button {
+  color: var(--text-color-light);
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: var(--button-border-radius);
+  transition: 0.3s all;
+  padding: 12px;
+  background-color: var(--container-color-dark);
+}
+
+.lesson__button:hover {
+  scale: 0.95;
+}
+
+.lesson__grades {
+  font-size: 1.2rem;
+}
+
+.lesson__title {
+  font-size: 1.6rem;
+  margin-bottom: 10px;
+}
+
+@media only screen and (max-width: 576px) {
+  .page-wrapper {
+    height: fit-content;
+  }
+
+  .lessons-container {
+    grid-template-columns: 1fr;
+  }
+}

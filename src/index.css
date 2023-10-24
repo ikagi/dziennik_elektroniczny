@@ -31,7 +31,6 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 42px;
 }
 
 a {
@@ -43,6 +42,8 @@ a:visited {
   color: var(--title-color-light);
 }
 
-.main {
-  margin-top: 150px;
+button {
+  border: none;
+  outline: none;
+  cursor: pointer;
 }

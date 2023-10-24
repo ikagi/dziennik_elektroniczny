@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import LoginValidation from '../../../scripts/LoginValidation';
 
 export const LoginForm = () => {
+  //Add password show state feature
   const [visible, setVisible] = useState(false);
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
@@ -21,13 +22,26 @@ export const LoginForm = () => {
     const validationErrors = LoginValidation({ login, password });
 
     if (!validationErrors.login && !validationErrors.password) {
-      fetch('http://127.0.0.1:8081/users')
-        .then((response) => console.log(response))
-        .then((data) => console.log(data))
+      let loginData = {
+        login: login,
+        password: password,
+        token: import.meta.env.VITE_API_TOKEN,
+      };
+      fetch('http://185.119.210.230:3941/users', {
+        method: 'POST',
+        headers: new Headers({
+          'Content-Type': 'application/json',
+        }),
+        body: JSON.stringify(loginData),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if(data === true){
+            navigate('/student-panel');
+          }
+        })
         .catch((error) => console.error(error));
-      console.log('Login: ' + login);
-      console.log('Haslo: ' + password);
-      //navigate('/student-panel');
+        
     } else {
       setErrors(validationErrors);
     }

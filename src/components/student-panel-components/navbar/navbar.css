@@ -1,5 +1,5 @@
 .student-panel__header {
-  background-color: var(--container-color-dark);
+  background-color: rgb(35, 35, 35);
   position: fixed;
   top: 0;
   width: 100%;
@@ -7,6 +7,10 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.student-panel__list {
+  gap: 42px;
 }
 
 .student-panel__list .link {
@@ -21,5 +25,9 @@
 @media only screen and (max-width: 576px) {
   .student-panel__list .link {
     font-size: 1.1rem;
+  }
+
+  .student-panel__list {
+    padding: 0 10px;
   }
 }

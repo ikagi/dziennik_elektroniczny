@@ -2,7 +2,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0.4);
   width: 100%;
   height: 100vh;
   display: flex;
@@ -16,11 +16,45 @@
   padding: 32px;
   width: 100%;
   max-width: 640px;
-  background-color: var(--container-color-dark);
+  background-color: rgb(35, 35, 35);
+  max-height: 100%;
+  overflow-y: auto;
 }
 
 .popup__inner .popup__close-button {
+  color: var(--text-color-light);
+  font-size: 1.2rem;
   position: absolute;
   top: 16px;
   right: 16px;
+  background-color: inherit;
+  transition: 0.3s all;
+}
+
+.popup__inner .popup__close-button:hover {
+  scale: 0.9;
+}
+
+.popup__lesson {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.popup__grades {
+  list-style: none;
+}
+
+.popup__grade {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.popup__grade {
+  border-bottom: 1px solid var(--text-color-light);
+  padding: 15px;
+}
+
+.popup__grade:last-child {
+  border-bottom: none;
 }
