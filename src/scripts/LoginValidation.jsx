@@ -12,9 +12,6 @@ function LoginValidation(userInput) {
 
   if (userInput.password === '') {
     errors.password = 'Hasło nie może być puste';
-  } else if (!passwordRegex.test(userInput.password)) {
-    console.log(passwordRegex.test(userInput.password));
-    errors.password = 'Niepoprawne hasło';
   }
 
   return errors;

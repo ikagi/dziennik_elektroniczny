@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import './loginform.css';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import LoginValidation from '../../../scripts/LoginValidation';
+import Cookies from 'js-cookie';
 
 export const LoginForm = () => {
   //Add password show state feature
@@ -16,7 +18,14 @@ export const LoginForm = () => {
   const [redBorderPassword, setRedBorderPassword] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  //saving login token to cookie
+  const saveTokenCookie = (token, username) => {
+    Cookies.set("_auth", token)
+    Cookies.set("_auth_username", username);
+  };
+
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const validationErrors = LoginValidation({ login, password });
@@ -25,23 +34,21 @@ export const LoginForm = () => {
       let loginData = {
         login: login,
         password: password,
-        token: import.meta.env.VITE_API_TOKEN,
       };
-      fetch('http://185.119.210.230:3941/users', {
-        method: 'POST',
-        headers: new Headers({
-          'Content-Type': 'application/json',
-        }),
-        body: JSON.stringify(loginData),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          if(data === true){
-            navigate('/student-panel');
-          }
-        })
-        .catch((error) => console.error(error));
-        
+      setErrors(validationErrors);
+      try{
+        const response = await axios.post(
+          "http://185.119.210.230:3941/login",
+          loginData
+        )
+        if(response.status === 200){
+          saveTokenCookie(response.data.token, login);
+          navigate('/student-panel');
+        } 
+      } catch(err){
+          setErrors({login:"Zły login lub hasło", password:"Zły login lub hasło"});
+          //console.log(err);
+        }
     } else {
       setErrors(validationErrors);
     }

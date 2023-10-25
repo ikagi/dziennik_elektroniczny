@@ -16,6 +16,9 @@ export const Navbar = () => {
           <li className='link'>
             <Link to='/student-panel/announcements'>Ogłoszenia</Link>
           </li>
+          <li className='link'>
+            <Link to='/student-panel/account'>Konto</Link>
+          </li>
         </ul>
       </nav>
     </header>
