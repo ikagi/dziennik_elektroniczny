@@ -51,5 +51,6 @@
 
   .lessons-container {
     grid-template-columns: 1fr;
+    margin: 32px 0;
   }
 }
