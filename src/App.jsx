@@ -1,4 +1,4 @@
-import { Route, Routes, Navigate } from 'react-router-dom';
+import { Route, Routes, Navigate, Outlet } from 'react-router-dom';
 import './App.css';
 import { Login } from './pages/login/Login';
 import { ErrorPage } from './pages/404/ErrorPage';
@@ -16,22 +16,17 @@ function App() {
     else if (!isAuthenticated) {
       return <Navigate to='/' replace />;
     }
-    return children;
+    return <Outlet/>;
   };
 
   return (
     <Routes>
-      <Route
-        path='/student-panel'
-        element={
-          <ProtectedRoute>
-            <StudentPanel />
-          </ProtectedRoute>
-        }
-      />
-      <Route path='/student-panel/grades' element={<Grades />} />
-      <Route path='/student-panel/announcements' element={<Announcements />} />
-      <Route path='/student-panel/account' />
+      <Route element={<ProtectedRoute/>}>
+        <Route path='/student-panel' element={<StudentPanel />} />
+        <Route path='/student-panel/grades' element={<Grades />} />
+        <Route path='/student-panel/announcements' element={<Announcements />} />
+        <Route path='/student-panel/account' />
+      </Route>
       <Route path='/' element={<Login />} />
       <Route path='*' element={<ErrorPage />} />
     </Routes>
