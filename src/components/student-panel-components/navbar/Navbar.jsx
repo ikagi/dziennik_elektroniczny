@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './navbar.css';
+import { DropdownAccount } from '../dropdown-account/DropdownAccount';
 
 export const Navbar = () => {
+  const [trigger, setTrigger] = useState(false);
+
+  const handleOpenDropdown = () => {
+    setTrigger(!trigger);
+  };
+  
   return (
     <header className='student-panel__header'>
       <nav className='student-panel__nav'>
@@ -17,9 +24,12 @@ export const Navbar = () => {
             <Link to='/student-panel/announcements'>Ogłoszenia</Link>
           </li>
           <li className='link'>
-            <Link to='/student-panel/account'>Konto</Link>
+            <button className='button' onClick={handleOpenDropdown}>
+              Konto
+            </button>
           </li>
         </ul>
+        <DropdownAccount trigger={trigger} />
       </nav>
     </header>
   );

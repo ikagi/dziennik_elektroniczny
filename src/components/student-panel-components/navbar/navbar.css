@@ -9,6 +9,10 @@
   align-items: center;
 }
 
+.student-panel__nav {
+  position: relative;
+}
+
 .student-panel__list {
   gap: 42px;
 }
@@ -22,12 +26,25 @@
   transform: scale(0.95);
 }
 
+.button {
+  background-color: rgb(35, 35, 35);
+  color: var(--text-color-light);
+  font-size: 1.4rem;
+}
+
 @media only screen and (max-width: 576px) {
-  .student-panel__list .link {
+  .student-panel__list {
+    gap: 15px ;
+  }
+   .student-panel__list .link {
     font-size: 1.1rem;
   }
 
-  .student-panel__list {
-    padding: 0 10px;
+  .button {
+    font-size: 1.1rem;
+  }
+
+  .student-panel__nav {
+    padding: 0 15px;
   }
 }
