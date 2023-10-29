@@ -9,7 +9,6 @@ import { Account } from './components/student-panel-components/account/Account';
 import useAuthentication from './scripts/useAuthentication';
 
 function App() {
-
   const ProtectedRoute = () => {
     const [isAuthenticated, isLoading] = useAuthentication();
     if (isLoading) {
@@ -21,16 +20,16 @@ function App() {
   };
 
   return (
-      <Routes>
-        <Route element={<ProtectedRoute />}>
-          <Route path='/student-panel' element={<StudentPanel />} />
-          <Route path='/student-panel/grades' element={<Grades />} />
-          <Route path='/student-panel/announcements' element={<Announcements />} />
-          <Route path='/student-panel/account' element={<Account />} />
-        </Route>
-        <Route path='/' element={<Login />} />
-        <Route path='*' element={<ErrorPage />} />
-      </Routes>
+    <Routes>
+      <Route element={<ProtectedRoute />}>
+        <Route path='/student-panel' element={<StudentPanel />} />
+        <Route path='/student-panel/grades' element={<Grades />} />
+        <Route path='/student-panel/announcements' element={<Announcements />} />
+        <Route path='/student-panel/account' element={<Account />} />
+      </Route>
+      <Route path='/' element={<Login />} />
+      <Route path='*' element={<ErrorPage />} />
+    </Routes>
   );
 }
 

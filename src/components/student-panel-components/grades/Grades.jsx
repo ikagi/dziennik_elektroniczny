@@ -8,6 +8,7 @@ import axios from 'axios';
 export const Grades = () => {
   const [selectedPopup, setSelectedPopup] = useState(null);
   const [details, setDetails] = useState([]);
+  const [avg, setAvg] = useState(""); //Srednia wazona przechowywana w zmiennej avg
 
   const handlePopupClick = (popupId) => {
     setSelectedPopup(popupId);
@@ -21,15 +22,24 @@ export const Grades = () => {
     const token = Cookies.get('_auth');
     if (token) {
         axios.get("http://185.119.210.230:3941/getGrades", { headers: { 'X-Token': token } })
-            .then((response) => {
-                setDetails(response.data);
-            })
-            .catch(err => {
-                console.log(err);
-            });
+          .then((response) => {
+              setDetails(response.data);
+          })
+          .catch(err => {
+              console.log(err);
+          });
+        axios.get("http://185.119.210.230:3941/getAvg", { headers: { 'X-Token': token } })
+          .then((response) => {
+            setAvg(JSON.stringify(response.data));
+            console.log(response.data);
+          })
+          .catch(err => {
+            console.log(err);
+          })
     }
   }, []);
   
+
   const transformedData = details.reduce((result, item) => {
     const subjectName = item.subject_name;
     const existingSubject = result.find((subject) => subject.lesson === subjectName);
