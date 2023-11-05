@@ -1,9 +1,28 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import './timetabel.css';
+import axios from 'axios';
+import Cookies from 'js-cookie';
 
 export const Timetabel = () => {
-  const lessonNumbers = Array.from({ length: 8 }, (_, index) => index + 1);
-
+  const lessonNumbers = Array.from({ length: 9 }, (_, index) => index + 1);
+  const days = ["Poniedziałek", "Wtorek", "Środa", "Czwartek", "Piątek"];
+  const [timetableData, settimetableData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    const token = Cookies.get('_auth');
+    if (token) {
+      axios
+        .get('http://185.119.210.230:3941/getTimeTable', { headers: { 'X-Token': token } })
+        .then((response) => {
+          settimetableData(JSON.parse(response.data));
+          setIsLoading(false);
+        }) 
+        .catch((err) => {
+          console.log(err);
+        });
+      console.log(timetableData);
+    }
+  }, []);
   return (
     <div className='timetable-wrapper'>
       <h1 className='timetable__title'>Plan Lekcji</h1>
@@ -26,62 +45,22 @@ export const Timetabel = () => {
           <div className='timetable__lesson-time'>11:55 - 12:40</div>
           <div className='timetable__lesson-time'>12:50 - 13:35</div>
           <div className='timetable__lesson-time'>13:40 - 14:25</div>
+          <div className='timetable__lesson-time'>14:35 - 15:15</div>
         </div>
-        <div className='timetable__day-wrapper'>
-          <div className='timetable__day'>Poniedziałek</div>
-          <div className='timetable__lesson'>Matematyka</div>
-          <div className='timetable__lesson'>Polski</div>
-          <div className='timetable__lesson'>Chemia</div>
-          <div className='timetable__lesson'>Historia</div>
-          <div className='timetable__lesson'>W-F</div>
-          <div className='timetable__lesson'>Religia</div>
-          <div className='timetable__lesson'></div>
-          <div className='timetable__lesson'></div>
-        </div>
-        <div className='timetable__day-wrapper'>
-          <div className='timetable__day'>Wtorek</div>
-          <div className='timetable__lesson'>Fizyka</div>
-          <div className='timetable__lesson'>Angielski</div>
-          <div className='timetable__lesson'>WOS</div>
-          <div className='timetable__lesson'>Biologia</div>
-          <div className='timetable__lesson'>Informatyka</div>
-          <div className='timetable__lesson'>Plastyka</div>
-          <div className='timetable__lesson'>Matematyka</div>
-          <div className='timetable__lesson'></div>
-        </div>
-        <div className='timetable__day-wrapper'>
-          <div className='timetable__day'>Środa</div>
-          <div className='timetable__lesson'>Chemia</div>
-          <div className='timetable__lesson'>Historia</div>
-          <div className='timetable__lesson'>Polski</div>
-          <div className='timetable__lesson'>W-F</div>
-          <div className='timetable__lesson'>Religia</div>
-          <div className='timetable__lesson'>Fizyka</div>
-          <div className='timetable__lesson'>Angielski</div>
-          <div className='timetable__lesson'>WOS</div>
-        </div>
-        <div className='timetable__day-wrapper'>
-          <div className='timetable__day'>Czwartek</div>
-          <div className='timetable__lesson'>Biologia</div>
-          <div className='timetable__lesson'>Informatyka</div>
-          <div className='timetable__lesson'>Plastyka</div>
-          <div className='timetable__lesson'>Matematyka</div>
-          <div className='timetable__lesson'>Polski</div>
-          <div className='timetable__lesson'>Chemia</div>
-          <div className='timetable__lesson'>Historia</div>
-          <div className='timetable__lesson'>W-F</div>
-        </div>
-        <div className='timetable__day-wrapper'>
-          <div className='timetable__day'>Piątek</div>
-          <div className='timetable__lesson'>Informatyka</div>
-          <div className='timetable__lesson'>Polski</div>
-          <div className='timetable__lesson'>Chemia</div>
-          <div className='timetable__lesson'>Historia</div>
-          <div className='timetable__lesson'>Plastyka</div>
-          <div className='timetable__lesson'>Religia</div>
-          <div className='timetable__lesson'>W-F</div>
-          <div className='timetable__lesson'></div>
-        </div>
+        {days.map((day) => (
+          <div className='timetable__day-wrapper' key={day}>
+            <div className='timetable__day'>{day}</div>
+            {isLoading ? (
+              <div className='loading-message'>Loading...</div>
+            ) : (
+              timetableData[day].map((lesson, index) => (
+                <div key={index} className='timetable__lesson'>
+                  {lesson}
+                </div>
+              ))
+            )}
+          </div>
+        ))}
       </div>
     </div>
   );

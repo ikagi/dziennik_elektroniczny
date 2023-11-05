@@ -1,4 +1,29 @@
-.test{
-    margin-top: 200px;
-    margin-left: 100px;
+.account-container {
+  margin-top: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.account__title {
+  font-size: 2rem;
+}
+
+.account__list {
+  margin-top: 50px;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.list__item {
+  width: 100%;
+  font-size: 1.2rem;
+}
+
+.account__information {
+  font-weight: 700;
+}
+
+@media only screen and (max-width: 576px) {
 }

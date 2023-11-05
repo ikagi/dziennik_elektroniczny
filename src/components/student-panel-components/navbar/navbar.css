@@ -17,13 +17,13 @@
   gap: 42px;
 }
 
-.student-panel__list .link {
+.student-panel__list .link-text {
   font-size: 1.4rem;
   transition: 0.3s all;
 }
 
-.student-panel__list .link:hover {
-  transform: scale(0.95);
+.student-panel__list .link:hover .link-text {
+  font-size: 1.3rem;
 }
 
 .button {
@@ -32,16 +32,68 @@
   font-size: 1.4rem;
 }
 
-@media only screen and (max-width: 576px) {
-  .student-panel__list {
-    gap: 15px ;
-  }
-   .student-panel__list .link {
-    font-size: 1.1rem;
+.link {
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dropdown {
+  position: absolute;
+  flex-direction: column;
+  top: 150px;
+  width: 175px;
+  height: 100px;
+  background-color: rgb(35, 35, 35);
+  list-style: none;
+  display: none;
+  transition: 0.5s all;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  gap: 8px;
+}
+
+.dropdown-trigger:hover .dropdown {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: slideIn 0.15s forwards;
+}
+
+.dropdown-link {
+  font-size: 1.4rem;
+}
+
+@keyframes slideIn {
+  0% {
+    top: 150px;
   }
 
-  .button {
-    font-size: 1.1rem;
+  100% {
+    top: 100px;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .student-panel__list {
+    gap: 15px;
+  }
+  .student-panel__list .link-text {
+    font-size: 1rem;
+  }
+
+  .student-panel__list .link:hover .link-text {
+    font-size: 0.9rem;
+  }
+
+  .dropdown {
+    width: 100px;
+    height: 75px;
+  }
+
+  .dropdown-link {
+    font-size: 1rem;
   }
 
   .student-panel__nav {
