@@ -20,5 +20,4 @@ Dla każdego użytkownika wyświetlany jest inny plan lekcji(w zależności od p
 
 Proces instalacj: 
 1. Pobierz Node.Js na serwer (https://nodejs.org/en/download)
-2. Pobierz serwer baz danych MySql (np. zawarty w programie XAMPP https://www.apachefriends.org/pl/index.html)
-3. Zaimportuj baze danych ()
+2. 
