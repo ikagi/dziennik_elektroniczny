@@ -20,5 +20,5 @@ Dla każdego użytkownika wyświetlany jest inny plan lekcji(w zależności od p
 
 Proces instalacj: 
 1. Pobierz Node.Js na serwer (https://nodejs.org/en/download)
-2. Rozpakuj pliki projektu (https://github.com/ikagi/dziennik_elektroniczny/)
+2. Rozpakuj pliki projektu (https://github.com/ikagi/dziennik_elektroniczny/releases)
 3. Wejdz do folderu frontend i wpisz w terminalu "npm install" a następnie "npm run dev"
