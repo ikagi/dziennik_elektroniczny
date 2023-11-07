@@ -79,6 +79,7 @@
   font-size: 1.2rem;
   line-height: 35px;
   transition: 0.1s all;
+  cursor: pointer;
 }
 
 .form__password-icon:active {
@@ -92,7 +93,6 @@
   right: 0;
   font-weight: 500;
 }
-
 
 @media only screen and (max-width: 768px) {
   .error-message {

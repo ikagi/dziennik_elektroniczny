@@ -44,14 +44,14 @@
   flex-direction: column;
   top: 150px;
   width: 175px;
-  height: 100px;
+  height: 140px;
   background-color: rgb(35, 35, 35);
   list-style: none;
   display: none;
   transition: 0.5s all;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
-  gap: 8px;
+  gap: 10px;
 }
 
 .dropdown-trigger:hover .dropdown {
@@ -63,6 +63,11 @@
 
 .dropdown-link {
   font-size: 1.4rem;
+  transition: 0.3s all;
+}
+
+.dropdown-link:hover {
+  font-size: 1.3rem;
 }
 
 @keyframes slideIn {

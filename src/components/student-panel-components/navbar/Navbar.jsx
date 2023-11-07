@@ -28,11 +28,16 @@ export const Navbar = () => {
             </span>
           </li>
           <li className='link dropdown-trigger'>
-            <span className='link-text'>Konto</span>
+            <span className='link-text'>Uczeń</span>
             <ul className='dropdown'>
               <li>
                 <Link to='/student-panel/account' className='dropdown-link'>
                   Informacje
+                </Link>
+              </li>
+              <li>
+                <Link to='/student-panel/notes' className='dropdown-link'>
+                  Uwagi
                 </Link>
               </li>
               <li>
@@ -42,7 +47,6 @@ export const Navbar = () => {
               </li>
             </ul>
           </li>
-
         </ul>
       </nav>
     </header>

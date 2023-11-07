@@ -7,6 +7,7 @@ import { Grades } from './components/student-panel-components/grades/Grades';
 import { Announcements } from './components/student-panel-components/announcements/Announcements';
 import { Account } from './components/student-panel-components/account/Account';
 import useAuthentication from './scripts/useAuthentication';
+import { Notes } from './components/student-panel-components/notes/Notes';
 
 function App() {
   const ProtectedRoute = () => {
@@ -26,6 +27,7 @@ function App() {
         <Route path='/student-panel/grades' element={<Grades />} />
         <Route path='/student-panel/announcements' element={<Announcements />} />
         <Route path='/student-panel/account' element={<Account />} />
+        <Route path='/student-panel/notes' element={<Notes />} />
       </Route>
       <Route path='/' element={<Login />} />
       <Route path='*' element={<ErrorPage />} />

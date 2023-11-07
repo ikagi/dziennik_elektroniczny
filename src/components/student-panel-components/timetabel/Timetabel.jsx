@@ -1,11 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import './timetabel.css';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
 export const Timetabel = () => {
   const lessonNumbers = Array.from({ length: 9 }, (_, index) => index + 1);
-  const days = ["Poniedziałek", "Wtorek", "Środa", "Czwartek", "Piątek"];
+  const days = ['Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek'];
   const [timetableData, settimetableData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
@@ -16,7 +16,7 @@ export const Timetabel = () => {
         .then((response) => {
           settimetableData(JSON.parse(response.data));
           setIsLoading(false);
-        }) 
+        })
         .catch((err) => {
           console.log(err);
         });
